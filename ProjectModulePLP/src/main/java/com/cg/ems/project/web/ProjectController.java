@@ -39,8 +39,8 @@ public class ProjectController {
 	}
 
 	@GetMapping(value = "/projectCode/{projectCode}", produces = "application/json")
-	public Project searchByProjectCode(@PathVariable int projectCode) throws WrongIDException{
-		return service.searchById(projectCode);
+	public Project searchByProjectCode(@PathVariable String projectCode) throws WrongIDException{
+		return service.searchById(Integer.parseInt(projectCode));
 	}
 	
 
@@ -49,7 +49,7 @@ public class ProjectController {
 		return service.deleteProject(projectCode);
 	}
 	
-	@PutMapping(value = "/update")
+	@PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
 	public String updateProject(@RequestBody Project project) throws WrongIDException, WrongDurationException {
 		int temp = service.modifyProject(project);
 		if (temp ==1)

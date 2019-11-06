@@ -67,7 +67,7 @@ public class ProjectServiceImpl implements ProjectService {
 		String status = project.getStatus();
 
 		try {
-			Project p = repo.findById(projectCode).get();
+//			Project p = repo.findById(projectCode).get();
 
 			if (endDate.compareTo(startDate) > 0) {
 				return repo.modifyProject(projectCode, projectDescription, startDate, endDate, businessUnit, status);
