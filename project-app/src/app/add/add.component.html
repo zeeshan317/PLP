@@ -1,0 +1,35 @@
+<form (ngSubmit)="addProject()" #addForm="ngForm">
+    <div class="form group">
+        <label>Enter Project Code</label><br>
+        <input type="number" [(ngModel)]=project.code name="code" #name=ngModel id="code"><br>
+      </div>
+ 
+  <div class="form-group">
+    <label>Enter the Project Description</label><br>
+    <input type="text" [(ngModel)]=project.description name="description" #name=ngModel id="description"><br>
+  </div>
+ 
+  <div class="form group">
+    <label>Enter Start Date</label><br>
+    <input type="date" [(ngModel)]=project.startDate class="form-control form-control-lg dateselect" min="{{minDate|date:'yyyy-MM-dd'}}" max="{{maxDate|date:'yyyy-MM-dd'}}" name="startDate" #name=ngModel id="startDate"><br>
+  </div>
+ 
+  <div class="form group">
+    <label>Enter End Date</label><br>
+    <input type="date" [(ngModel)]=project.endDate class="form-control form-control-lg dateselect" min="{{minDate|date:'yyyy-MM-dd'}}" max="{{maxDate|date:'yyyy-MM-dd'}}" name="endDate" #name=ngModel id="endDate"><br>
+  </div>
+
+  <div class="form group">
+      <label>Business Unit </label><br>
+      <input type="text" [(ngModel)]=project.businessUnit name="businessUnit" #name=ngModel id="businessUnit"><br>
+    </div>
+
+    <div class="form group">
+        <label>Status</label><br>
+        <input type="text" [(ngModel)]=project.status name="status" #name=ngModel id="status"><br>
+      </div>  
+  <div class="form group">
+    <br><br>
+    <button class="btn btn-success" type="submit" (click)="addProject()">Add Project</button>
+  </div>
+</form>

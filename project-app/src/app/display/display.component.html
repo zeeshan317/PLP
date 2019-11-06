@@ -1,0 +1,22 @@
+
+  <table class="table table-bordered">
+      <tr>
+        <th>Code</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Business Unit</th>
+        <th>Status</th>
+      </tr>
+      <tr *ngFor="let project of project; let i = index">
+        <th>{{project.code}}</th>
+        <td>{{project.description}}</td>
+        <td>{{project.startDate}}</td>
+        <td>{{project.endDate}}</td>
+        <td>{{project.status}}</td>
+        
+       
+      </tr>
+    </table>
+    
+    

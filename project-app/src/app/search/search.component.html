@@ -1,0 +1,32 @@
+<form (ngSubmit)="searchProject()" #addForm="ngForm">
+    <div class="form-group">
+      <label>Enter the Project Code:</label><br>
+      <input type="number" [(ngModel)]=project.code name="code"><br>
+  </div>
+  <div class="form-group">
+    <button name="codeSearch" type="submit"  class="btn btn-info">Search Project</button>
+  </div>
+</form>
+
+<table class="table table-bordered">
+    
+  <tr>
+<th>Code</th>    
+<th>Description</th>
+<th>Start Date</th>
+<th>End Date</th>
+<th>Business Unit</th>
+<th>Status</th>
+
+  </tr>
+
+  <tr>
+      <td>{{project.code}}</td>
+      <td>{{project.description}}</td>
+      <td>{{project.startDate}}</td>
+      <td>{{project.endDate}}</td>
+      <td>{{project.businessUnit}}</td>
+      <td>{{project.status}}</td>
+      </tr>
+      
+</table>
