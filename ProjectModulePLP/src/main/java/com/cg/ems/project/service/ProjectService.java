@@ -18,6 +18,9 @@ Project addProject(Project project) throws WrongDurationException;
 	
 	Boolean deleteProject(int projectCode) throws WrongIDException;
 
-	int modifyProject(int projectCode, String projectDescription, Date startDate, Date endDate, String businessUnit,
-			String status) throws WrongIDException;
+	//int modifyProject(int projectCode, String projectDescription, Date startDate, Date endDate, String businessUnit,
+		//	String status) throws WrongIDException;
+
+
+	int modifyProject(Project project) throws WrongIDException, WrongDurationException;
 }

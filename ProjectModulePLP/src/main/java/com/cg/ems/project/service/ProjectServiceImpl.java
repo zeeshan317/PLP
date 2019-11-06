@@ -1,6 +1,7 @@
 package com.cg.ems.project.service;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,22 +13,23 @@ import com.cg.ems.project.dto.Project;
 import com.cg.ems.project.exception.WrongDurationException;
 import com.cg.ems.project.exception.WrongIDException;
 import com.cg.ems.project.repo.ProjectRepo;
+
 @Service
 @Transactional(rollbackOn = WrongIDException.class)
 public class ProjectServiceImpl implements ProjectService {
 
 	@Autowired
 	private ProjectRepo repo;
+
 	@Override
 	public Project addProject(Project project) throws WrongDurationException {
-		Date startDate=project.getStartDate();
-		Date endDate=project.getEndDate();
-		 if (startDate.compareTo(endDate) < 0) { 
-			 return repo.save(project);
-	            
-	        } 
-		 else
-			 throw new WrongDurationException("Invalid Duration");
+		Date startDate = project.getStartDate();
+		Date endDate = project.getEndDate();
+
+		if (endDate.compareTo(startDate) > 0) {
+			return repo.save(project);
+		} else
+			throw new WrongDurationException("Invalid Duration");
 	}
 
 	@Override
@@ -55,13 +57,26 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public int modifyProject(int projectCode, String projectDescription, Date startDate, Date endDate,
-			String businessUnit, String status) throws WrongIDException {
+	public int modifyProject(Project project) throws WrongIDException, WrongDurationException {
+
+		int projectCode = project.getProjectCode();
+		String projectDescription = project.getProjectDescription();
+		Date startDate = project.getStartDate();
+		Date endDate = project.getEndDate();
+		String businessUnit = project.getBusinessUnit();
+		String status = project.getStatus();
+
 		try {
-			return repo.modifyProject(projectCode,projectDescription,startDate, endDate, businessUnit, status);
-			} catch (Exception e) {
-				throw new WrongIDException("Project wtih code "+projectCode+" not found");
-			}
-			}	
+			Project p = repo.findById(projectCode).get();
+
+			if (endDate.compareTo(startDate) > 0) {
+				return repo.modifyProject(projectCode, projectDescription, startDate, endDate, businessUnit, status);
+			} else
+				throw new WrongDurationException("Invalid Duration");
+		} catch (Exception e) {
+			throw new WrongIDException("Project wtih code " + projectCode + " not found");
+		}
+
+	}
 
 }

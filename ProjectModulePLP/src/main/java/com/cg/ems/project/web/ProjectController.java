@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ import com.cg.ems.project.exception.WrongDurationException;
 import com.cg.ems.project.exception.WrongIDException;
 import com.cg.ems.project.service.ProjectService;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/project")
 public class ProjectController {
@@ -49,9 +50,8 @@ public class ProjectController {
 	}
 	
 	@PutMapping(value = "/update")
-	public String updateProject(@RequestParam int projectCode, String projectDescription,Date startDate,
-			Date endDate,String businessUnit, String status) throws WrongIDException {
-		int temp = service.modifyProject(projectCode,projectDescription,startDate, endDate, businessUnit, status);
+	public String updateProject(@RequestBody Project project) throws WrongIDException, WrongDurationException {
+		int temp = service.modifyProject(project);
 		if (temp ==1)
 			return "Successfull Modification";
 		else 

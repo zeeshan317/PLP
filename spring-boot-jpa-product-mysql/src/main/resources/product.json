@@ -1,0 +1,17 @@
+[
+	{
+		"name": "RedmiNote8",
+		"category": "Mobile",
+		"price": 15000.0,
+		"rating": 8,
+		"stock": 30
+	},
+	
+	{
+		"name": "Thinkpad",
+		"category": "Laptop",
+		"price": 10000.0,
+		"rating": 9,
+		"stock": 300
+	}
+]

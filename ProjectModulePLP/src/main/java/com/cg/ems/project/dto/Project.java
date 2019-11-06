@@ -26,18 +26,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 		private int projectCode;
 		
 		@Column(name = "project_description")
-		@Pattern(regexp = "[A-Z][a-z]{2,100}")
 		@NotBlank(message = "Description is mandatory, cannot be empty")
 		private String projectDescription;
 		
 		@Column(name = "project_startDate")
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-		@NotBlank(message = "Start Date is mandatory, cannot be empty")
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+		//@NotBlank(message = "Start Date is mandatory, cannot be empty")
 		private Date startDate;
 		
 		@Column(name = "project_endDate")
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-		@NotBlank(message = "End Date is mandatory, cannot be empty")
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+		//@NotBlank(message = "End Date is mandatory, cannot be empty")
 		private Date endDate;
 		
 		@Column(name = "project_businessUnit")

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.cg.ems.project.exception.WrongDurationException;
 import com.cg.ems.project.exception.WrongIDException;
 
 
@@ -21,6 +22,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(WrongIDException.class)
 	@ResponseBody
 	public ResponseEntity<Object> handleInvalidSomething(WrongIDException ex){
+		System.out.println("Exception : "+ex.getMessage());
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+		
+	}
+	@ExceptionHandler(WrongDurationException.class)
+	@ResponseBody
+	public ResponseEntity<Object> handleInvalidSomething2o(WrongDurationException ex){
 		System.out.println("Exception : "+ex.getMessage());
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 		
